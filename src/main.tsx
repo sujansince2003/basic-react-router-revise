@@ -5,6 +5,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import { About, Blog, Contact, Github, Home } from "./components";
+import { loadApiData } from "./components/Github";
 
 // defining the router props for RouterProvider
 const router = createBrowserRouter([
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
         element: <Blog />,
       },
       {
-        path: "github", // / ta pailai xa as hamle  / ko children ma yo lekhdai xam. means /about ma k dekhauni
+        path: "github/:username", // using loader
+        loader: ({ params }) => loadApiData(params?.username || ""),
         element: <Github />,
       },
     ],
